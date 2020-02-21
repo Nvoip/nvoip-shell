@@ -73,9 +73,25 @@ Shell language scripts and libraries for use with the Nvoip API.
 This script will trigger an SMS when it fires.
 How to use it:
 
-1. Change the $token_auth, $mobile, and $msg variables according to Nvoip API documentation.
+1. Apply values to environment variables (optional):
 
-2. Run the script with the command: sh send_sms_nvoip.sh
+```bash
+$ export NVOIP_TOKEN_AUTH=token
+$ export NVOIP_CELULAR=number
+$ export NVOIP_MSG=message
+```
+
+2. Run the script with the command:
+
+```bash
+$ sh send_sms_nvoip.sh
+```
+
+or, (if you do not follow the step 1):
+
+```bash
+$ NVOIP_TOKEN_AUTH=token NVOIP_CELULAR=number NVOIP_MSG=message sh send_sms_nvoip.sh
+```
 
 3. Wait a moment you will receive the SMS.
 
@@ -83,8 +99,25 @@ How to use it:
 This script will trigger a voice call reading the problem caused through TTS.
 How to use it:
 
-1. Change the $token_auth, $caller, $called and $audio variables according to the Nvoip API documentation.
+1. Apply values to environment variables (optional):
 
-2. Run the script with the command: sh send_torpedovoz_nvoip.sh
+```bash
+$ export NVOIP_TOKEN_AUTH=token
+$ export NVOIP_CALLER=number
+$ export NVOIP_CALLED=number
+$ export NVOIP_AUDIO=path-to-audio-file
+```
+
+2. Run the script with the command:
+
+```bash
+$ sh send_torpedovoz_nvoip.sh
+```
+
+or, (if you do not follow the step 1):
+
+```bash
+$ NVOIP_TOKEN_AUTH=token NVOIP_CALLER=number NVOIP_CALLED=number NVOIP_AUDIO=path-to-audio-file sh send_torpedovoz_nvoip.sh
+```
 
 3. Ready. You will now receive the Voice Call Message.
