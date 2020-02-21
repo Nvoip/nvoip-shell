@@ -13,30 +13,30 @@
 #You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ###Inicio do Script###
+
+# $TOKEN_AUTH
 # Seu Token da Nvoip. Acesse https://www.nvoip.com.br, crie sua para ter acesso ao seu Token.
 # English: Your Nvoip Token. Visit https://www.nvoip.com.br, create yours to have access to your Token.
 
-token_auth="TOKEN NVOIP"
-
+# $NVOIP_CALLER
 # O número do seu usuário(ramal) na Nvoip. O mesmo não precisa estar online.
 # English: Your Nvoip username (extension). It does not have to be online.
-caller="USUÁRIO NVOIP"
 
-#O telefone que irá receber a ligação.
-#English: Phone will receive the voice call.
-called="Telefone/Phone"
+# $NVOIP_CALLED
+# O telefone que irá receber a ligação.
+# English: Phone will receive the voice call.
 
-#Texto que irá ser lido ou URL de arquivo MP3 que será tocado. A URL deve estar pública na internet e quando acessada via navegador, deverá abrir o player e começar a tocar.
-#English: Text to be read or MP3 file URL to be played. The URL must be public on the internet and when accessed via a browser, should open the player and start playing.
-audio="Texto/MP3"
+# $NVOIP_AUDIO
+# Texto que irá ser lido ou URL de arquivo MP3 que será tocado. A URL deve estar pública na internet e quando acessada via navegador, deverá abrir o player e começar a tocar.
+# English: Text to be read or MP3 file URL to be played. The URL must be public on the internet and when accessed via a browser, should open the player and start playing.
 
 curl --include \
      --request POST \
      --header "Content-Type: application/json" \
-     --header "token_auth: $token_auth" \
+     --header "token_auth: $NVOIP_TOKEN_AUTH" \
      --data-binary "{
-    \"caller\":\"$caller\",
-    \"called\":\"$called\",
-    \"audio\":\"$audio\"
+    \"caller\":\"$NVOIP_CALLER\",
+    \"called\":\"$NVOIP_CALLED\",
+    \"audio\":\"$NVOIP_AUDIO\"
 }" \
 'https://api.nvoip.com.br/v1/torpedovoz'
