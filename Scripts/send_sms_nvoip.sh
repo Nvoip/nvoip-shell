@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 #Nvoip - SMS
 
 #Copyright (C) 2020 Nvoip Plataforma Telefonia Ltda

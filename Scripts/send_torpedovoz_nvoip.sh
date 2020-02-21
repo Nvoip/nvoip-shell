@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 #Nvoip - Torpedo de Voz Shell Script
 
 #Copyright (C) 2020 Nvoip Plataforma Telefonia Ltda
