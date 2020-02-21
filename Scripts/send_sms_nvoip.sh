@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 #Nvoip - SMS
 
 #Copyright (C) 2020 Nvoip Plataforma Telefonia Ltda
@@ -12,25 +14,26 @@
 
 #You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-###Inicio do Script / Start Script ###
+### Inicio do Script / Start Script ###
+
+# $NVOIP_TOKEN_AUTH
 # Seu Token da Nvoip. Acesse https://www.nvoip.com.br, crie sua para ter acesso ao seu Token.
 # English: Your Nvoip Token. Visit https://www.nvoip.com.br, create yours to have access to your Token.
-token_auth="Token Nvoip"
 
-#Celular que irá receber a mensagem.
-#English: Mobile phone will receive the message.
-celular="Celular/Mobile Number"
+# $NVOIP_CELULAR
+# Celular que irá receber a mensagem.
+# English: Mobile phone will receive the message.
 
-#Mensagem a ser enviada (Limite-se a 140 caracteres).
-#English: Message to send.
-msg="Mensagem a ser disparada"
+# $NVOIP_MSG
+# Mensagem a ser enviada (Limite-se a 140 caracteres).
+# English: Message to send.
 
 curl --include \
      --request POST \
      --header "Content-Type: application/json" \
-     --header "token_auth: $token_auth" \
+     --header "token_auth: $NVOIP_TOKEN_AUTH" \
      --data-binary "{
-    \"celular\":\"$celular\",
-    \"msg\":\"$msg\"
+    \"celular\":\"$NVOIP_CELULAR\",
+    \"msg\":\"$NVOIP_MSG\"
 }" \
 'https://api.nvoip.com.br/v1/sms'
