@@ -14,8 +14,4 @@
 
 #Nome do arquivo onde vai conter as urls para fazer o download.
 File="cdr.txt"
-Lines=$(cat $File)
-for Line in $Lines
-do
-wget -q "$Line"
-done
+wget -p -i  $File
