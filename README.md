@@ -34,12 +34,6 @@ export NVOIP_TARGET_NUMBER="11999999999"
 export NVOIP_SMS_MESSAGE="Mensagem de teste Nvoip"
 ```
 
-Se preferir manter um `basic auth` ja serializado, envie apenas por variavel de ambiente:
-
-```bash
-export NVOIP_OAUTH_BASIC_AUTH="basic_auth_base64"
-```
-
 ## Exemplos
 
 Enviar SMS:
@@ -93,7 +87,6 @@ sh examples/send-whatsapp-template.sh
 ## Observações
 
 - `NVOIP_ACCESS_TOKEN` é opcional. Se não for informado, os exemplos geram um token OAuth automaticamente.
-- o caminho principal recomendado para OAuth e `client_id` + `client_secret`; `NVOIP_OAUTH_BASIC_AUTH` ficou apenas como compatibilidade
 - para torpedo de voz, o endpoint atual usa `/v2/torpedo/voice`
 - para clientes Linux que só querem disparar recursos da API sem SDK, este repositório deve ser o principal ponto de entrada
 - para fluxo de popup de telefone + código, use em conjunto o repositório `nvoip-web-sdk`
