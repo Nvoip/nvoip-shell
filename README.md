@@ -1,6 +1,6 @@
 # nvoip-shell
 
-Conjunto de scripts Shell para Linux e automações simples usando a API v2 da Nvoip.
+Scripts oficiais da [Nvoip](https://www.nvoip.com.br/) para integrar a API v2 com OAuth, chamadas, OTP, WhatsApp, SMS, saldo e voz em Linux e Shell.
 
 ## O que tem aqui
 
