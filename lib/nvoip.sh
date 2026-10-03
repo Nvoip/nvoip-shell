@@ -166,7 +166,10 @@ nvoip_check_otp() {
   curl -sS \
     --request GET \
     --header "Authorization: Bearer $access_token" \
-    "$NVOIP_BASE_URL/check/otp?code=$code&key=$key"
+    --get \
+    --data-urlencode "code=$code" \
+    --data-urlencode "key=$key" \
+    "$NVOIP_BASE_URL/check/otp"
 }
 
 nvoip_list_whatsapp_templates() {

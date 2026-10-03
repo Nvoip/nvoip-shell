@@ -13,3 +13,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: sh -n lib/*.sh examples/*.sh Scripts/*.sh
+      - run: sh tests/transport.sh
