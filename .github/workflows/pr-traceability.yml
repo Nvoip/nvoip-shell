@@ -2,7 +2,7 @@ name: PR scope and traceability
 
 on:
   pull_request:
-    branches: [main]
+    branches: [master]
     types: [opened, synchronize, reopened, edited]
 
 permissions:
