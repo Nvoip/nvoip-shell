@@ -7,4 +7,5 @@ SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 nvoip_require_var NVOIP_OTP_CODE
 nvoip_require_var NVOIP_OTP_KEY
 
-nvoip_check_otp "$NVOIP_OTP_CODE" "$NVOIP_OTP_KEY"
+ACCESS_TOKEN="${NVOIP_ACCESS_TOKEN:-$(nvoip_create_access_token)}"
+nvoip_check_otp "$ACCESS_TOKEN" "$NVOIP_OTP_CODE" "$NVOIP_OTP_KEY"
