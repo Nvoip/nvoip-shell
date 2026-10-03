@@ -155,11 +155,13 @@ nvoip_send_otp() {
 }
 
 nvoip_check_otp() {
-  code="$1"
-  key="$2"
+  access_token="$1"
+  code="$2"
+  key="$3"
 
   curl -sS \
     --request GET \
+    --header "Authorization: Bearer $access_token" \
     "$NVOIP_BASE_URL/check/otp?code=$code&key=$key"
 }
 
