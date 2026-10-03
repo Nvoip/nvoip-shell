@@ -43,13 +43,15 @@ nvoip_create_access_token() {
   nvoip_require_command curl || return 1
   nvoip_require_command base64 || return 1
   nvoip_require_command sed || return 1
-  basic_auth="$(nvoip_resolve_basic_auth)" || return 1
+  nvoip_require_var NVOIP_OAUTH_CLIENT_ID || return 1
+  nvoip_require_var NVOIP_OAUTH_CLIENT_SECRET || return 1
 
   response="$(curl -sS \
     --request POST \
-    --header "Authorization: Basic $basic_auth" \
     --header "Content-Type: application/x-www-form-urlencoded" \
     --data-urlencode "grant_type=client_credentials" \
+    --data-urlencode "client_id=$NVOIP_OAUTH_CLIENT_ID" \
+    --data-urlencode "client_secret=$NVOIP_OAUTH_CLIENT_SECRET" \
     "$NVOIP_TOKEN_URL")" || return 1
 
   token="$(nvoip_extract_json_string "$response" access_token)"
@@ -64,14 +66,16 @@ nvoip_create_access_token() {
 nvoip_refresh_access_token() {
   refresh_token="$1"
   nvoip_require_command curl || return 1
-  basic_auth="$(nvoip_resolve_basic_auth)" || return 1
+  nvoip_require_var NVOIP_OAUTH_CLIENT_ID || return 1
+  nvoip_require_var NVOIP_OAUTH_CLIENT_SECRET || return 1
 
   curl -sS \
     --request POST \
-    --header "Authorization: Basic $basic_auth" \
     --header "Content-Type: application/x-www-form-urlencoded" \
     --data-urlencode "grant_type=refresh_token" \
     --data-urlencode "refresh_token=$refresh_token" \
+    --data-urlencode "client_id=$NVOIP_OAUTH_CLIENT_ID" \
+    --data-urlencode "client_secret=$NVOIP_OAUTH_CLIENT_SECRET" \
     "$NVOIP_TOKEN_URL"
 }
 
