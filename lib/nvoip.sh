@@ -1,6 +1,7 @@
 #!/bin/sh
 
-NVOIP_BASE_URL="${NVOIP_BASE_URL:-https://api.nvoip.com.br/v2}"
+NVOIP_BASE_URL="${NVOIP_BASE_URL:-https://api.nvoip.com.br/v3}"
+NVOIP_TOKEN_URL="${NVOIP_TOKEN_URL:-https://api.nvoip.com.br/auth/oauth2/token}"
 
 nvoip_require_command() {
   if ! command -v "$1" >/dev/null 2>&1; then
@@ -42,18 +43,14 @@ nvoip_create_access_token() {
   nvoip_require_command curl || return 1
   nvoip_require_command base64 || return 1
   nvoip_require_command sed || return 1
-  nvoip_require_var NVOIP_NUMBERSIP || return 1
-  nvoip_require_var NVOIP_USER_TOKEN || return 1
   basic_auth="$(nvoip_resolve_basic_auth)" || return 1
 
   response="$(curl -sS \
     --request POST \
     --header "Authorization: Basic $basic_auth" \
     --header "Content-Type: application/x-www-form-urlencoded" \
-    --data-urlencode "username=$NVOIP_NUMBERSIP" \
-    --data-urlencode "password=$NVOIP_USER_TOKEN" \
-    --data-urlencode "grant_type=password" \
-    "$NVOIP_BASE_URL/oauth/token")" || return 1
+    --data-urlencode "grant_type=client_credentials" \
+    "$NVOIP_TOKEN_URL")" || return 1
 
   token="$(nvoip_extract_json_string "$response" access_token)"
   if [ -z "$token" ]; then
@@ -75,7 +72,7 @@ nvoip_refresh_access_token() {
     --header "Content-Type: application/x-www-form-urlencoded" \
     --data-urlencode "grant_type=refresh_token" \
     --data-urlencode "refresh_token=$refresh_token" \
-    "$NVOIP_BASE_URL/oauth/token"
+    "$NVOIP_TOKEN_URL"
 }
 
 nvoip_send_sms() {
