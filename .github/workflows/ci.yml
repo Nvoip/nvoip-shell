@@ -7,10 +7,15 @@ on:
       - main
       - master
 
+permissions:
+  contents: read
+
 jobs:
   shell:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - run: sh -n lib/*.sh examples/*.sh Scripts/*.sh
       - run: sh tests/transport.sh
